@@ -300,6 +300,7 @@ function onSessionEnded(sessionEndedRequest, session) {
 var ANSWER_COUNT = 4;
 var GAME_LENGTH = 5;
 var CARD_TITLE = "Brand Slogan";
+var BREAK_TIME = 2; // Seconds to wait after prompting question
 
 function getWelcomeResponse(callback) {
     var sessionAttributes = {},
@@ -318,12 +319,18 @@ function getWelcomeResponse(callback) {
         i, j;
 
     for (i = 0; i < ANSWER_COUNT; i++) {
-        repromptText += (i+1).toString() + ". " + roundAnswers[i] + ". "
+        repromptText += (i+1).toString() + ". " + roundAnswers[i] + ". ";
     }
     speechOutput += repromptText;
     sessionAttributes = {
-        "speechOutput": repromptText,
-        "repromptText": repromptText,
+        "speechOutput": {
+                            "type": "SSML",
+                            "ssml": "<speak>" + repromptText + "<break time=\"" + BREAK_TIME + "s\"/> </speak>"
+                        },
+        "repromptText": {
+                            "type": "SSML",
+                            "ssml": "<speak>" + repromptText + "<break time=\"" + BREAK_TIME + "s\"/> </speak>"
+                        },,
         "currentQuestionIndex": currentQuestionIndex,
         "correctAnswerIndex": correctAnswerIndex + 1,
         "questions": gameQuestions,
