@@ -30,7 +30,7 @@ var questions = [
         ]
     },
     {
-        "Because You're Worth It": [
+        "Because You're Worth It.": [
             "L'Oréal",
             "Head and Shoulders",
             "Axe",
@@ -38,7 +38,7 @@ var questions = [
         ]
     },
     {
-        "Got Milk?": [
+        "Got Milk?.": [
             "California Milk Processor Board",
             "Alta Dena",
             "Milk the film",
@@ -54,7 +54,7 @@ var questions = [
         ]
     },
     {
-        "The Ultimate Driving Machine": [
+        "The Ultimate Driving Machine.": [
             "BMW",
             "Mercedes Benz",
             "Honda",
@@ -70,7 +70,7 @@ var questions = [
         ]
     },
     {
-        "Melts in Your Mouth, Not in Your Hands": [
+        "Melts in Your Mouth, Not in Your Hands.": [
             "M and M",
             "Godiva",
             "Snickers",
@@ -78,7 +78,7 @@ var questions = [
         ]
     },
     {
-        "Betcha Can't Eat Just One": [
+        "Betcha Can't Eat Just One.": [
             "Lays",
             "Doritos",
             "Cheetos",
@@ -86,7 +86,7 @@ var questions = [
         ]
     },
     {
-        "Vorsprung durch technik": [
+        "Vorsprung durch technik.": [
             "Audi",
             "Mazda",
             "Volkswagen",
@@ -102,7 +102,7 @@ var questions = [
         ]
     },
     {
-        "Tastes So Good, Cats Ask for It by Name": [
+        "Tastes So Good, Cats Ask for It by Name.": [
             "Meow Mix",
             "Purina One",
             "Blue Buffalo",
@@ -110,7 +110,7 @@ var questions = [
         ]
     },
     {
-        "I'm Lovin' It": [
+        "I'm Lovin' It.": [
             "McDonalds",
             "Wendy's",
             "Burger King",
@@ -118,7 +118,7 @@ var questions = [
         ]
     },
     {
-        "All the News That's Fit to Print": [
+        "All the News That's Fit to Print.": [
             "New York Times",
             "Washington Post",
             "USA Today",
@@ -126,7 +126,7 @@ var questions = [
         ]
     },
     {
-        "Imagination at Work": [
+        "Imagination at Work.": [
             "General Electric",
             "H P",
             "Pixar",
@@ -142,7 +142,7 @@ var questions = [
         ]
     },
     {
-        "Like a Good Neighbor, blank... is There": [
+        "Like a Good Neighbor, blank... is There.": [
             "State Farm",
             "Geico",
             "Farmers Mutual",
@@ -314,7 +314,7 @@ function getWelcomeResponse(callback) {
 
         currentQuestionIndex = 0,
         spokenQuestion = Object.keys(questions[gameQuestions[currentQuestionIndex]])[0],
-        repromptText = "Question 1. " + spokenQuestion + " ",
+        repromptText = "Question 1. " + spokenQuestion + ": ... ",
 
         i, j;
 
@@ -330,7 +330,7 @@ function getWelcomeResponse(callback) {
         "repromptText": {
                             "type": "SSML",
                             "ssml": "<speak>" + repromptText + "<break time=\"" + BREAK_TIME + "s\"/> </speak>"
-                        },,
+                        },
         "currentQuestionIndex": currentQuestionIndex,
         "correctAnswerIndex": correctAnswerIndex + 1,
         "questions": gameQuestions,
@@ -457,7 +457,7 @@ function handleAnswerRequest(intent, session, callback) {
             var roundAnswers = populateRoundAnswers(gameQuestions, currentQuestionIndex, correctAnswerIndex),
 
                 questionIndexForSpeech = currentQuestionIndex + 1,
-                repromptText = "Question " + questionIndexForSpeech.toString() + ". " + spokenQuestion + " ";
+                repromptText = "Question " + questionIndexForSpeech.toString() + ". " + spokenQuestion + ": ... ";
             for (var i = 0; i < ANSWER_COUNT; i++) {
                 repromptText += (i+1).toString() + ". " + roundAnswers[i] + ". "
             }
