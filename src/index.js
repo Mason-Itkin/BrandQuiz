@@ -62,7 +62,7 @@ var questions = [
         ]
     },
     {
-        "Every Little Helps": [
+        "Every Little Helps.": [
             "Tesco",
             "Walgreens",
             "CVS",
@@ -94,7 +94,7 @@ var questions = [
         ]
     },
     {
-        "America Runs on... blank.": [
+        "America Runs on, BLANK.": [
             "Dunkin' Donuts",
             "O'reilly",
             "Western Bagel",
@@ -142,7 +142,7 @@ var questions = [
         ]
     },
     {
-        "Like a Good Neighbor, blank... is There.": [
+        "Like a Good Neighbor, BLANK... is There.": [
             "State Farm",
             "Geico",
             "Farmers Mutual",
@@ -150,7 +150,7 @@ var questions = [
         ]
     },
     {
-        "Maybe she's born with it. Maybe it's... blank.": [
+        "Maybe she's born with it. Maybe it's, BLANK.": [
             "Maybelline",
             "Genetics",
             "Bare minerals",
@@ -158,7 +158,7 @@ var questions = [
         ]
     },
     {
-        "The Few. The Proud. The... blank.": [
+        "The Few. The Proud. The, BLANK.": [
             "Marines",
             "Army",
             "Navy",
@@ -323,14 +323,16 @@ function getWelcomeResponse(callback) {
     }
     speechOutput += repromptText;
     sessionAttributes = {
-        "speechOutput": {
+        "speechOutput": repromptText
+                        /*{
                             "type": "SSML",
                             "ssml": "<speak>" + repromptText + "<break time=\"" + BREAK_TIME + "s\"/> </speak>"
-                        },
-        "repromptText": {
+                        }*/,
+        "repromptText": repromptText
+                        /*{
                             "type": "SSML",
                             "ssml": "<speak>" + repromptText + "<break time=\"" + BREAK_TIME + "s\"/> </speak>"
-                        },
+                        }*/,
         "currentQuestionIndex": currentQuestionIndex,
         "correctAnswerIndex": correctAnswerIndex + 1,
         "questions": gameQuestions,
@@ -514,7 +516,7 @@ function handleGetHelpRequest(intent, session, callback) {
 function handleFinishSessionRequest(intent, session, callback) {
     // End the session with a "Good bye!" if the user wants to quit the game
     callback(session.attributes,
-        buildSpeechletResponseWithoutCard("Good bye!", "", true));
+        buildSpeechletResponseWithoutCard("Thanks for playing Brand Quiz!", "", true));
 }
 
 function isAnswerSlotValid(intent) {
